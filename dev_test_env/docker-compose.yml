@@ -1,0 +1,25 @@
+
+services:
+  traccar-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: traccar-dev:latest
+    container_name: traccar-dev
+    ports:
+      - "8080:8080"
+
+    working_dir: /workspace
+
+    volumes:
+      - ${HOME}/sgdev/traccar:/workspace
+
+    # Keep the container running in the background
+    command: ["sleep", "infinity"]
+
+    # Interactive terminal support
+    stdin_open: true
+    tty: true
+
+    restart: unless-stopped
